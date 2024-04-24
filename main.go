@@ -3,17 +3,16 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/ank809/Cobra-Golang/cmd"
 )
 
 func main() {
 
-	// if err:= cmd.rootCmd.Execute();err!=nil{
-	// 	fmt.Println(os.Stderr, err);
-	// 	os.Exit(1);
-	// }
-
-	if err := cmd.rootCmd.Execute(); err != nil {
-		fmt.Println(os.Stderr, err)
+	cmd.RootCmd.AddCommand(cmd.VersionCmd)
+	cmd.RootCmd.AddCommand(cmd.Try)
+	if err := cmd.RootCmd.Execute(); err != nil {
+		fmt.Fprint(os.Stderr, err)
 		os.Exit(1)
 	}
 }
